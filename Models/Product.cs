@@ -27,6 +27,6 @@ namespace Magazyn.Models
         public int CategoryID { get; set; }
 
 
-        public Category Category { get; set; } 
+        public Category Category { get; set; } =new Category();
     }
 }

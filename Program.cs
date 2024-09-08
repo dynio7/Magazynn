@@ -1,3 +1,6 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Magazyn.Data;
 namespace Magazyn
 {
     public class Program
@@ -5,6 +8,8 @@ namespace Magazyn
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<MagazynContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("MagazynContext") ?? throw new InvalidOperationException("Connection string 'MagazynContext' not found.")));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

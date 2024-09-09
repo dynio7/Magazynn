@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Magazyn.Data;
 using Magazyn.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Magazyn.Controllers
 {
@@ -44,6 +45,7 @@ namespace Magazyn.Controllers
         }
 
         // GET: Categories/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();

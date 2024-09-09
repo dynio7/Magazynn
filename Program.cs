@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Magazyn.Data;
+using Microsoft.AspNetCore.Identity;
 namespace Magazyn
 {
     public class Program
@@ -10,6 +11,10 @@ namespace Magazyn
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddDbContext<MagazynContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("MagazynContext") ?? throw new InvalidOperationException("Connection string 'MagazynContext' not found.")));
+
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+            .AddEntityFrameworkStores<MagazynContext>()
+            .AddDefaultTokenProviders();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -29,6 +34,7 @@ namespace Magazyn
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

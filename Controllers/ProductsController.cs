@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Magazyn.Data;
 using Magazyn.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Magazyn.Controllers
 {
@@ -103,7 +104,7 @@ namespace Magazyn.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,Description,Cost,Price,Count,ImageURL,CategoryID")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("Name,Description,Cost,Price,Count,ImageURL,CategoryID,Id")] Product product)
         {
             if (id != product.Id)
             {
@@ -114,6 +115,16 @@ namespace Magazyn.Controllers
             {
                 try
                 {
+                    var category = await _context.Category.FindAsync(product.CategoryID);
+                    if (category == null)
+                    {
+                        ModelState.AddModelError("CategoryId", "Invalid category.");
+                        ViewBag.Categories = new SelectList(_context.Category, "Id", "Name", product.CategoryID);
+                        return View(product);
+                    }
+
+                    product.Category = category;
+
                     _context.Update(product);
                     await _context.SaveChangesAsync();
                 }

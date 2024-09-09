@@ -39,6 +39,6 @@ namespace Magazyn.Models
         public int CategoryID { get; set; }
 
         [Display(Name = "Kategoria")]
-        public Category Category { get; set; } =new Category();
+        public Category Category { get; set; } = new Category();
     }
 }

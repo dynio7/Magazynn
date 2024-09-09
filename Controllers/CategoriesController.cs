@@ -45,7 +45,6 @@ namespace Magazyn.Controllers
         }
 
         // GET: Categories/Create
-        [Authorize]
         public IActionResult Create()
         {
             return View();

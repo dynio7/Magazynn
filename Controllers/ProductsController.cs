@@ -47,6 +47,7 @@ namespace Magazyn.Controllers
         }
 
         // GET: Products/Create
+        [Authorize]
         public IActionResult Create()
         {
             ViewData["CategoryID"] = new SelectList(_context.Category, "Id", "Name");
@@ -83,6 +84,7 @@ namespace Magazyn.Controllers
         }
 
         // GET: Products/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -146,6 +148,7 @@ namespace Magazyn.Controllers
         }
 
         // GET: Products/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

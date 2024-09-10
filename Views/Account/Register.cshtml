@@ -7,6 +7,8 @@
 <h1>@ViewData["Title"]</h1>
 
 <form asp-action="Register">
+    <div asp-validation-summary="All" class="text-danger" lang="pl"></div>
+
     <div class="form-group">
         <label asp-for="Email"></label>
         <input asp-for="Email" class="form-control" />
@@ -24,11 +26,7 @@
     </div>
     <input type="submit" value="Register" class="btn btn-primary" />
 
-    @section Scripts {
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
-    }
+    
 
 
 </form>

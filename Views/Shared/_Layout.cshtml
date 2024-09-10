@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Magazyn</title>
+    <title>@ViewData["Title"] - Treningowo</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Magazyn.styles.css" asp-append-version="true" />
@@ -20,9 +20,6 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Strona Główna</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Produkty</a>
                         </li>
@@ -48,13 +45,15 @@
     @if (User.Identity.IsAuthenticated)
     {
         <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-            <button type="submit" class="btn btn-link">Wyloguj</button>
+            <button type="submit" class=" btn btn-outline-info">Wyloguj</button>
         </form>
     }
     else
     {
-        <a asp-controller="Account" asp-action="Login">Zaloguj</a>
-        <a asp-controller="Account" asp-action="Register">Zarejestruj</a>
+        <button type="button" class=" btn btn-outline-info"><a asp-controller="Account" asp-action="Login">Zaloguj</a></button>
+        <button type="button" class=" btn btn-outline-info"><a asp-controller="Account" asp-action="Register">Zarejestruj</a></button>
+        
+        
     }
 
 
